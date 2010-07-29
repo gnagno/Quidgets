@@ -1,0 +1,20 @@
+PhillipWidgets
+==============
+
+A collection of HTML/AJAX widgets that directly bind to your database model, 
+so you don't need implement database query/update in your code, it just work out of the box.
+
+
+HOW TO USE
+
+* Checkbox : Auto update database model
+  Ex:
+    <%= phillip_checkbox("user",user.id,"active") %>
+    
+    => Display a checkbox that reflect the status of the current user, if unchecked it will update the active field of users table as FALSE.
+
+* radio button...(coming soon)
+
+
+
+Copyright (c) 2010 PhillipWidgets, released under the MIT license
