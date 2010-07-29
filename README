@@ -25,7 +25,7 @@ HOW TO USE
 
 * CheckBox widget:
   Ex:
-    <%= phillip_checkbox("user",user.id,"active") %>
+    <%= phillip_checkbox("user",@current_user.id,"active") %>
     
     => Display a checkbox that reflect the status of the current user, if unchecked it will update the active field of users table as FALSE.
 
