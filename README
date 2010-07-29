@@ -11,6 +11,14 @@ HOW TO INSTALL
 
 * In your /app/controllers/application_controller.rb, add this line : 
     enable_phillip_widgets
+    
+    Your applcation_controller.rb should look like this:
+    
+      class ApplicationController < ActionController::Base
+        enable_phillip_widgets
+      end
+    
+    
 
 
 HOW TO USE
