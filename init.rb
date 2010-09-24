@@ -1,10 +1,10 @@
 ActionController::Base.class_eval do
-  include PhillipWidgetsController
+  include QuidgetsController
 end
 
 
-require 'phillip_widgets_helper'
-ActionView::Base.send :include, PhillipWidgetsHelper
+require 'Quidgets_helper'
+ActionView::Base.send :include, QuidgetsHelper
 
 
 class ::Hash

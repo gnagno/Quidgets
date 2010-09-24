@@ -1,4 +1,4 @@
-PhillipWidgets
+Quidgets
 ==============
 
 A collection of HTML/AJAX widgets that directly bind to your database model, 
@@ -7,15 +7,15 @@ so you don't need implement database query/update in your code, it just work out
 HOW TO INSTALL
 
 * Install plugin from git:
-    ./script/plugin install git://github.com/phtphan/Phillip-Widgets.git
+    ./script/plugin install git://github.com/phtphan/Quidgets.git
 
 * In your /app/controllers/application_controller.rb, add this line : 
-    enable_phillip_widgets
+    enable_quidgets
     
     Your applcation_controller.rb should look like this:
     
       class ApplicationController < ActionController::Base
-        enable_phillip_widgets
+        enable_quidgets
       end
     
     
