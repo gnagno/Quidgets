@@ -12,7 +12,7 @@ HOW TO INSTALL
 * In your /app/controllers/application_controller.rb, add this line : 
     enable_quidgets
     
-    Your applcation_controller.rb should look like this:
+* Your applcation_controller.rb should look like this:
     
       class ApplicationController < ActionController::Base
         enable_quidgets
@@ -24,13 +24,10 @@ HOW TO INSTALL
 HOW TO USE
 
 * CheckBox widget:
-  Ex:
-    <%= phillip_checkbox("user",@current_user.id,"active") %>
+    <%= checkbox(:html_id => "my_checkbox", :model => "user",:id => 1,:field => "active") %>
     
-    => Display a checkbox that reflect the status of the current user, if unchecked it will update the active field of users table as FALSE.
-
 * RadioButton...(coming soon)
 
 
 
-Copyright (c) 2010 PhillipWidgets, released under the MIT license
+Copyright (c) 2010 Quidgets, released under the MIT license
