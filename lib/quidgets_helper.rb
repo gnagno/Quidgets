@@ -15,36 +15,31 @@ module QuidgetsHelper
     html << "/>"
     return html
   end
-###################################################################################### checkbox_group  
-  def checkbox_group(params) # :id, :records, :field
-    html=""
-    params[:records].each do |record|
-      html << checkbox(:id => params[:id], :record => record, :field => params[:field])
-    end
-    return html
-  end
-
 ###################################################################################### radio
-  def radio(params) # :name, :record, :field, :reference_field    
-    #Fine model name for data instance
-    params[:record].to_s.match(/<.*:/)
-    model_name=$&.gsub(/<|:/,"")
+  def radio(params) # :name, :id, :class, :parent, :option
+    
+    #Find parent model name
+    parent_name=find_model_name(params[:parent])
+    
+    #Find option model name
+    option_name=find_model_name(params[:option])
     
     #Construct HTML element
-    html="<input type=\"radio\" name=\"#{params[:name]}\" "
+    html="<input type=\"radio\" name=\"#{params[:name]}\" id=\"#{params[:id]}\" class=\"#{params[:class]}\" "
     if params[:record].send(params[:field].to_sym)==1
       html << "checked "
     end
     html << "onclick=\"#{remote_function(:url => "/application/quidgets_radio_update?id=#{params[:record].id}&model=#{model_name}&field=#{params[:field]}&parent_field=#{params[:reference_field]}", :with => "'svalue='+ this.checked")}\""
     html << "/>"
   end
-###################################################################################### radio_group
-  def radio_group(params) # :name, :records, :field, :reference_field
-    html=""
-    params[:records].each do |record|
-      html << radio(:name => params[:name], :record => record, :field => params[:field], :reference_field => params[:reference_field])
+######################################################################################  PRIVATE
+  private
+  def find_model_name(object)
+    if object.to_s.match(/<.*:/)
+      return $&.gsub(/<|:/,"")
+    else
+      return nil
     end
-    return html
   end
-######################################################################################
+###################################################################################### END
 end

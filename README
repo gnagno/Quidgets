@@ -1,8 +1,8 @@
 Quidgets
 ==============
 
-A collection of HTML/AJAX widgets that directly bind to your database model, 
-so you don't need implement database query/update in your code, it just work out of the box.
+A collection of helper widgets that directly bind to your database structure.
+It's extremely simple to use.
 
 HOW TO INSTALL
 
@@ -12,7 +12,7 @@ HOW TO INSTALL
 * In your /app/controllers/application_controller.rb, add this line : 
     enable_quidgets
     
-* Your applcation_controller.rb should look like this:
+    => Your applcation_controller.rb should look like this:
     
       class ApplicationController < ActionController::Base
         enable_quidgets
@@ -22,12 +22,38 @@ HOW TO INSTALL
 
 
 HOW TO USE
-
-* CheckBox widget:
-    <%= checkbox(:html_id => "my_checkbox", :model => "user",:id => 1,:field => "active") %>
+  Example DB structure:
+  + user.rb
+      belongs_to :payment_method
     
-* RadioButton...(coming soon)
+  + payment_method.rb
+      has_many :users
+  
 
+
+* CHECKBOX: checkbox(params) # :id, :class, :record, :field
+  
+    Ex: 
+        <%= checkbox :id => "user_active", :record => @current_user, :field => :active %>
+          
+* RADIO BUTTON: radio(params) # :name, :id, :class, :parent, :option
+    
+    Ex:    
+        PICK A PAYMENT METHOD <br/>
+        <%= radio(:name => "payment_method_option", :parent => @user, :option => PaymentMethod.find(1)) VISA <br/>
+        <%= radio(:name => "payment_method_option", :parent => @user, :option => PaymentMethod.find(2)) MASTER CARD <br/>            
+      
+* TEXTBOX: textbox(params)  # :id, :class, :record, :field
+
+    <%= textbox(:id => "user_name", :record => user, :field => :name) %>
+    
+* LISTBOX: listbox(params) # :id, :class, :parent, :list
+    <%= listbox(:id => "payment_method", :parent => @user, :list => PaymentMethod.all) %>        
+    
+* DROPBOX: dropbox(params) # :id, :class, :parent, :list
+    <%= dropbox(:id => "payment_method", :parent => @user, :list => PaymentMethod.all)
+    
+* listbox_dragdrop(params) # Coming soon
 
 
 Copyright (c) 2010 Quidgets, released under the MIT license
