@@ -27,11 +27,8 @@ module QuidgetsController
       end
       ###################################################### quidgets_radio_update    
       def quidgets_radio_update
-        model=params[:model].camelize.constantize.find(params[:id])
-        group_id=model.send(params[:parent_field].to_sym)
-        params[:model].camelize.constantize.update_all("#{params[:field]}=0","#{params[:parent_field]}='#{group_id}'")
-        model.update_attribute(params[:field].to_sym,1)
-        model.save!      
+        record=params[:record_model].camelize.constantize.find(params[:record_id])
+        record.update_attribute("#{params[:option_model].underscore}_id".to_sym,params[:option_id])                  
         render :text => ""
       end    
   end    

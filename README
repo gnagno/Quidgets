@@ -34,7 +34,7 @@ HOW TO USE
 * CHECKBOX: checkbox(params) # :id, :class, :record, :field
   
     Ex: 
-        <%= checkbox :id => "user_active", :record => @current_user, :field => :active %>
+        <%= checkbox :id => "user_active", :record => User.find(1), :field => :active %>
           
 * RADIO BUTTON: radio(params) # :name, :id, :class, :parent, :option
     
