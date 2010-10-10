@@ -16,19 +16,19 @@ module QuidgetsController
   module InstanceMethods
       ###################################################### quidgets_checkbox_update    
       def quidgets_checkbox_update 
-        model=params[:model_name].camelize.constantize.find(params[:id])
+        object=params[:object_model_name].camelize.constantize.find(params[:id])
         if params[:svalue]=="true"
-          model.update_attribute(params[:field_name].to_sym,1)
+          object.update_attribute(params[:method].to_sym,1)
         elsif params[:svalue]=="false"
-          model.update_attribute(params[:field_name].to_sym,0)          
+          object.update_attribute(params[:method].to_sym,0)          
         end
-        model.save!
+        object.save!
         render :text => ""
       end
       ###################################################### quidgets_radio_update    
       def quidgets_radio_update
-        record=params[:record_model].camelize.constantize.find(params[:record_id])
-        record.update_attribute("#{params[:option_model].underscore}_id".to_sym,params[:option_id])                  
+        object=params[:object_model].camelize.constantize.find(params[:object_id])
+        object.update_attribute("#{params[:choice_model].underscore}_id".to_sym,params[:choice_id])                  
         render :text => ""
       end    
   end    

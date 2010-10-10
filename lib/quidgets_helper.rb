@@ -1,39 +1,57 @@
 module QuidgetsHelper
 ###################################################################################### checkbox  
-  def checkbox(params) # :id, :record, :field
-    #model=params[:model].camelize.constantize.find(params[:id])
+  def checkbox(object,method,html_options = {}) 
     #Fine model name for data instance
-    params[:record].to_s.match(/<.*:/)
-    model_name=$&.gsub(/<|:/,"")
+    object_model_name=find_model_name(object)
+        
+    html="<input 
+      type=\"checkbox\" 
+      id=\"#{html_options[:id]}\" 
+      name=\"#{html_options[:name]}\" 
+      class=\"#{html_options[:class]}\" "
+        
+    html << "onclick=\"#{remote_function(:url => "/application/quidgets_checkbox_update?" <<
+      "id=#{object.id}&" <<
+      "object_model_name=#{object_model_name}&" <<
+      "method=#{method}", :with => "'svalue='+ this.checked")}\""
     
-    
-    html="<input type=\"checkbox\" id=\"#{params[:id]}\" "
-    html << "onclick=\"#{remote_function(:url => "/application/quidgets_checkbox_update?id=#{params[:record].id}&model_name=#{model_name}&field_name=#{params[:field]}", :with => "'svalue='+ this.checked")}\""
-
-    if params[:record].send(params[:field].to_sym)==true
-      html << " checked "
-    end
+    html << " checked " if object.send(method.to_sym)==true
     html << "/>"
     return html
   end
 ###################################################################################### radio
-  def radio(params) # :name, :id, :class, :record, :option    
+  def radio(object,choice,html_options = {}) # object,choice,html_options
     #Find parent model name
-    record_model=find_model_name(params[:record])
+    object_model=find_model_name(object)
     
     #Find option model name
-    option_model=find_model_name(params[:option])
+    choice_model=find_model_name(choice)
     
     #Construct HTML element
-    html="<input type=\"radio\" name=\"#{params[:name]}\" id=\"#{params[:id]}\" class=\"#{params[:class]}\" "
-
-    if params[:record].send(option_model.underscore.to_sym)==params[:option]
-      html << "checked "
-    end
-    
+    html="<input 
+    type=\"radio\" 
+    name=\"#{html_options[:name]}\" 
+    id=\"#{html_options[:id]}\" 
+    class=\"#{html_options[:class]}\" "
+      
+    html << "checked " if object.send(choice_model.underscore.to_sym)==choice
     html << "onclick=\"
-    #{remote_function(:url => "/application/quidgets_radio_update?record_id=#{params[:record].id}&option_id=#{params[:option].id}&record_model=#{record_model}&option_model=#{option_model}")}\""
+    #{remote_function(:url => "/application/quidgets_radio_update?" <<
+      "object_id=#{object.id}&" <<
+      "choice_id=#{choice.id}&" <<
+      "object_model=#{object_model}&" <<
+      "choice_model=#{choice_model}")}\""
     html << "/>"
+  end
+###################################################################################### textbox
+  def textbox(object,method,html_options = {})
+    object_model=find_model_name(object)
+    html="<input 
+      type=\"text\" 
+      id=\"#{html_options[:id]}\" 
+      name=\"#{html_options[:name]}\" 
+      class=\"#{html_options[:class]}\" 
+      value=\"#{object.send(method.to_sym)}\"/>"        
   end
 ######################################################################################  PRIVATE
   private
