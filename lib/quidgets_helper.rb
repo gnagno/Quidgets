@@ -53,6 +53,13 @@ module QuidgetsHelper
       class=\"#{html_options[:class]}\" 
       value=\"#{object.send(method.to_sym)}\"/>"        
   end
+###################################################################################### listbox
+  def listbox(object,choices,html_options = {})
+  end
+###################################################################################### dropbox
+  def dropbox(object,choices,html_options = {})
+  end
+
 ######################################################################################  PRIVATE
   private
   def find_model_name(object)

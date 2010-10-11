@@ -31,7 +31,7 @@ HOW TO USE
   
 
 
-* CHECKBOX: checkbox(params) # :id, :class, :record, :field
+* CHECKBOX: checkbox(object,method,html_options = {}) 
   
     Ex: 
         <%= checkbox :id => "user_active", :record => User.find(1), :field => :active %>
