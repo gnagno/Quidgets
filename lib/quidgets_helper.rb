@@ -1,5 +1,6 @@
 module QuidgetsHelper
 ###################################################################################### checkbox  
+# checkbox(record,"active",{:id => "active_check_#{record.id}"})     
   def checkbox(object,method,html_options = {}) 
     #Fine model name for data instance
     object_model_name=find_model_name(object)
@@ -20,7 +21,11 @@ module QuidgetsHelper
     return html
   end
 ###################################################################################### radio
-  def radio(object,choice,html_options = {}) # object,choice,html_options
+# Role.all.each do |role|
+#  html << radio(record,role,{:name => "role_option_#{record.id}"}) << "#{role.name}" 
+# end
+
+  def radio(object,choice,html_options = {})
     #Find parent model name
     object_model=find_model_name(object)
     
@@ -54,10 +59,31 @@ module QuidgetsHelper
       value=\"#{object.send(method.to_sym)}\"/>"        
   end
 ###################################################################################### listbox
-  def listbox(object,choices,html_options = {})
+#* LISTBOX: listbox(instance,choices,html_options = {})
+#    <%= listbox(@user,PaymentMethod.all,{:id => "dropbox_#{@user.id}"}) %>        
+
+  def listbox(instance,choices,html_options = {})
+    
   end
 ###################################################################################### dropbox
-  def dropbox(object,choices,html_options = {})
+#* LISTBOX: dropbox(instance,choices,html_options = {})
+# dropbox(user,Role.all,{:id => "role_#{user.id}"})
+
+  def dropbox(instance,choices,html_options = {})
+    model_name=find_model_name(instance)
+    html="<select 
+      id=\"#{html_options[:id]}\" 
+      name=\"#{html_options[:name]}\" 
+      class=\"#{html_options[:class]}\" 
+      />"
+      
+    choices.each do |choice|
+      html << "<option value='#{choice.name}'" <<
+      "#{"selected" if !instance.send(find_model_name(choice).underscore.to_sym).nil? and instance.send(find_model_name(choice).downcase.to_sym).id==choice.id} >" << 
+      "#{choice.name}</option>"
+    end
+    html <<"</select>"
+    return html
   end
 
 ######################################################################################  PRIVATE

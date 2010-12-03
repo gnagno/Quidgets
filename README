@@ -47,11 +47,11 @@ HOW TO USE
 
     <%= textbox(:id => "user_name", :record => user, :field => :name) %>
     
-* LISTBOX: listbox(params) # :id, :class, :parent, :list
-    <%= listbox(:id => "payment_method", :parent => @user, :list => PaymentMethod.all) %>        
+* LISTBOX: listbox(params) # :id, :class, :instance, :list
+    <%= listbox(:id => "payment_method", :instance => @user, :list => PaymentMethod.all) %>        
     
-* DROPBOX: dropbox(params) # :id, :class, :parent, :list
-    <%= dropbox(:id => "payment_method", :parent => @user, :list => PaymentMethod.all)
+* DROPBOX: dropbox(params) # :id, :class, :instance, :list
+    <%= dropbox(:id => "payment_method", :instance => @user, :list => PaymentMethod.all)
     
 * listbox_dragdrop(params) # Coming soon
 
