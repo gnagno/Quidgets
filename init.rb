@@ -3,7 +3,6 @@ ActionController::Base.class_eval do
 end
 
 
-require 'Quidgets_helper'
 ActionView::Base.send :include, QuidgetsHelper
 
 
