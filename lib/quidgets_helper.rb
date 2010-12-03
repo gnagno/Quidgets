@@ -66,7 +66,7 @@ module QuidgetsHelper
     
   end
 ###################################################################################### dropbox
-#* LISTBOX: dropbox(instance,choices,html_options = {})
+#* DROPBOX: dropbox(instance,choices,html_options = {})
 # dropbox(user,Role.all,{:id => "role_#{user.id}"})
 
   def dropbox(instance,choices,html_options = {})

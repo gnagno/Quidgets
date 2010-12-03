@@ -24,34 +24,32 @@ HOW TO INSTALL
 HOW TO USE
   Example DB structure:
   + user.rb
-      belongs_to :payment_method
+      belongs_to :role
     
-  + payment_method.rb
+  + role.rb
       has_many :users
   
 
 
-* CHECKBOX: checkbox(object,method,html_options = {}) 
-  
-    Ex: 
-        <%= checkbox :id => "user_active", :record => User.find(1), :field => :active %>
-          
-* RADIO BUTTON: radio(params) # :name, :id, :class, :parent, :option
-    
-    Ex:    
-        PICK A PAYMENT METHOD <br/>
-        <%= radio(:name => "payment_method_option", :parent => @user, :option => PaymentMethod.find(1)) VISA <br/>
-        <%= radio(:name => "payment_method_option", :parent => @user, :option => PaymentMethod.find(2)) MASTER CARD <br/>            
-      
-* TEXTBOX: textbox(params)  # :id, :class, :record, :field
+* CHECKBOX: checkbox(object,method,html_options = {})   
+    Ex: <%= checkbox :id => "user_active", :record => User.find(1), :field => :active %>
 
-    <%= textbox(:id => "user_name", :record => user, :field => :name) %>
+          
+* RADIO BUTTON: radio(object,choice,html_options = {})
+    Ex:    
+     Role.all.each do |role|
+      html << radio(user,role,{:name => "role_option_#{record.id}"}) << "#{role.name}" 
+     end
+      
+* TEXTBOX: (in progress)
+
+
     
-* LISTBOX: listbox(params) # :id, :class, :instance, :list
-    <%= listbox(:id => "payment_method", :instance => @user, :list => PaymentMethod.all) %>        
+* LISTBOX: (in progress)
     
-* DROPBOX: dropbox(params) # :id, :class, :instance, :list
-    <%= dropbox(:id => "payment_method", :instance => @user, :list => PaymentMethod.all)
+* DROPBOX: dropbox(instance,choices,html_options = {})
+    EX: <%= dropbox(user,Role.all,{:id => "role_#{user.id}"}) %>
+
     
 * listbox_dragdrop(params) # Coming soon
 
