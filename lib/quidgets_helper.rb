@@ -76,9 +76,11 @@ module QuidgetsHelper
       name=\"#{html_options[:name]}\" 
       class=\"#{html_options[:class]}\" 
       />"
+    
+    html << "<option onclick=\"#{remote_function(:url => "/application/quidgets_dropbox_update/#{instance.id}?model_name=#{model_name}&option_model_name=#{find_model_name(choices.first).underscore}")}\">(Please select)</option>"
       
     choices.each do |choice|
-      html << "<option value='#{choice.name}'" <<
+      html << "<option onclick=\"#{remote_function(:url => "/application/quidgets_dropbox_update/#{instance.id}?model_name=#{model_name}&option_model_name=#{find_model_name(choice).underscore}&option_id=#{choice.id}")}\"" <<
       "#{"selected" if !instance.send(find_model_name(choice).underscore.to_sym).nil? and instance.send(find_model_name(choice).downcase.to_sym).id==choice.id} >" << 
       "#{choice.name}</option>"
     end

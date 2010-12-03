@@ -31,6 +31,14 @@ module QuidgetsController
         object.update_attribute("#{params[:choice_model].underscore}_id".to_sym,params[:choice_id])                  
         render :text => ""
       end    
+      ###################################################### quidgets_dropbox_update          
+      def quidgets_dropbox_update
+        model_name=params[:model_name]
+        option_model_name=params[:option_model_name]
+        instance=model_name.camelize.constantize.find(params[:id])
+        instance.update_attribute("#{option_model_name.underscore}_id".to_sym,params[:option_id])                          
+        render :text => ""        
+      end
   end    
   #/////////////////////////////////////////////////////////////////////////////////////////////////////
 
