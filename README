@@ -39,7 +39,7 @@ HOW TO USE
 
 
 * CHECKBOX: checkbox(object,method,html_options = {})   
-    Ex: <%= checkbox :id => "user_active", :record => User.find(1), :field => :active %>
+    Ex: <%= raw checkbox( @user,"active",{:id => "active_check_#{@user.id}"}) %>
 
           
 * RADIO BUTTON: radio(object,choice,html_options = {})
