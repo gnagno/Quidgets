@@ -4,7 +4,9 @@ module QuidgetsHelper
   def checkbox(object,method,html_options = {}) 
     #Fine model name for data instance
     object_model_name=find_model_name(object)
-        
+    
+    @html_options = html_options
+    
     html="<input 
       type=\"checkbox\" 
       id=\"#{html_options[:id]}\" 
@@ -18,7 +20,8 @@ module QuidgetsHelper
     
     html << " checked " if object.send(method.to_sym)==true
     html << "/>"
-    return html
+    
+    render :partial => 'templates/checkbox'
   end
 ###################################################################################### radio
 # Role.all.each do |role|
