@@ -2,5 +2,19 @@
   type="checkbox" 
   id="<%= @html_options[:id] %>"
   name="<%= @html_options[:name] %>"   
-  class="<%= @html_options[:class] %>"
+  class="ph-checkbox <%= @html_options[:class] %>"
+  <%= " checked " if @is_checked %>
 />
+
+<script type="text/javascript">
+$(function(){
+  $('.ph-checkbox').change(function(){
+    $.ajax({
+      url: "<%= ph_quidgets_checkbox_update_path %>",
+      success: function(){
+        $(this).addClass("done");
+      }
+    });
+  });
+});
+</script>

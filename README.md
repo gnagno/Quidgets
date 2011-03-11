@@ -10,6 +10,7 @@ HOW TO INSTALL
     ./script/plugin install git://github.com/phtphan/Quidgets.git
 
 * In your /app/controllers/application_controller.rb, add this line : 
+    
     enable_quidgets
     
     => Your applcation_controller.rb should look like this:

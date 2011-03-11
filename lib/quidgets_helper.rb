@@ -6,6 +6,10 @@ module QuidgetsHelper
     object_model_name=find_model_name(object)
     
     @html_options = html_options
+#    @object = object
+#    @method = method
+    
+    @is_checked = object.send(method.to_sym)==true
     
     html="<input 
       type=\"checkbox\" 
